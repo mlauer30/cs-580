@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="https://inst.eecs.berkeley.edu/~cs188/sp20/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://inst.eecs.berkeley.edu/~cs188/sp20/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://inst.eecs.berkeley.edu/~cs188/sp20/favicon-16x16.png">
+    <link rel="manifest" href="https://inst.eecs.berkeley.edu/~cs188/sp20/site.webmanifest">
+    <link rel="mask-icon" href="https://inst.eecs.berkeley.edu/~cs188/sp20/safari-pinned-tab.svg" color="#fdb515">
+    <meta name="apple-mobile-web-app-title" content="CS 188">
+    <meta name="application-name" content="CS 188">
+    <meta name="msapplication-TileColor" content="#3b7ea1">
+    <meta name="msapplication-TileImage" content="https://inst.eecs.berkeley.edu/~cs188/sp20/mstile-144x144.png">
+    <meta name="theme-color" content="#3b7ea1">
+
+  <!-- This project is developed by Berkeley Pacman team, please visit http://ai.berkeley.edu/project_overview.html for more details. -->
+  <!-- The Pac-Man projects were developed primarily by John DeNero and Dan Klein.
+       The autograder development was headed up by Nick Hay, Brad Miller, Dan Klein, and Pieter Abbeel.
+       Many others have contributed to the projects, including Nimar Arora, David Burkett, Jeremy Cowles, 
+       Jeff Donahue, Dan Gillick, Aria Haghighi, Judy Hoffman, Ed Karuna, Jonathan Long, Jeremy Maitin-Shepard, 
+       Barak Michener, Aditi Muralidharan, Adam Pauls, Arjun Singh, and Daniel Urieli. -->
+  <!-- This website was designed by Alvin Wong and Pieter Abbeel. -->
+
+
+  <title>
+    
+      Schedule - CS 480: Introduction to Artificial Intelligence, Fall 2022
+    
+  </title>
+
+  <link rel="stylesheet" href="../css/main.css" type="text/css">
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="../js/bootstrap-toc.min.js"></script>
+
+
+  <script src="../js/jquery.qtip.min.js" type="text/javascript"></script>
+  <script src="../js/moment.min.js"></script>
+  <script src="../js/fullcalendar.min.js"></script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      CommonHTML: {
+        linebreaks: { automatic: true },
+        scale: 90,
+        preferredFont: "Latin Modern"
+      },
+      "HTML-CSS": {
+        linebreaks: { automatic: true },
+        scale: 90,
+        preferredFont: "Latin Modern"
+      },
+     SVG: {
+       linebreaks: { automatic: true },
+       scale: 90,
+       preferredFont: "Latin Modern"
+     }
+    });
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+
+
+<body data-spy="scroll" data-target="#toc">
+
+  <div id="navscroll">
+  <nav id="navbar" class="navbar navbar-light navbar-expand-lg align-items-center">
+    <div class="container">
+      <a class="navbar-brand" href="../../index.html" style="color: #000;"><strong>CS 480</strong> | Fall 2022</a>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-collapse ml-auto collapse" id="navbarSupportedContent" >
+        <ul class="navbar-nav ml-auto">
+         
+          <li class="nav-item"><a href="syllabus.html" class="nav-link">Syllabus</a></li>
+    
+          <li class="nav-item"><a href="../../index.html" class="nav-link">Project</a></li>
+        
+          <li class="nav-item"><a href="schedule.html" class="nav-link">Schedule</a></li>
+        
+          <li class="nav-item"><a href="staff.html" class="nav-link">Staff</a></li>
+        
+              <li class="nav-item">
+                <a class="nav-link" href="https://piazza.com/class/l6xy6jx3bi0jf">Piazza
+              <i class="fal fa-link"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- Return to Top -->
+<a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
+
+<script>
+  // ===== Scroll to Top ====
+  $(window).scroll(function() {
+    if ($(this).scrollTop() >= 50) {      // If page is scrolled more than 50px
+      $('#return-to-top').fadeIn(200);    // Fade in the arrow
+    } else {
+      $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    }
+  });
+  $('#return-to-top').click(function() {  // When arrow is clicked
+    $('body,html').animate({
+      scrollTop : 0                       // Scroll to top of body
+    }, 500);
+  });
+</script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<script>var $j = jQuery.noConflict(true);</script>
+<script>
+  $(document).ready(function(){
+    console.log($().jquery); // this prints v1.11.0
+    console.log($j().jquery); // this prints v3.1.0
+  });
+</script>
+<script src="../js/parallax.min.js"></script>
+
+<script src="../js/main.min.js"></script>
+
+
+  <div class='container'>
+    <!-- <div class="alert alert-info">
+  <i class="far fa-exclamation-triangle"></i>
+  <strong>IMPORTANT ANNOUNCEMENT: Please go to DWINELLE 155 for lecture starting from WED Jun 26, 2020)!!!</strong>
+</div> -->
+
+<!-- <div class="alert alert-warning">
+  <i class="far fa-exclamation-triangle"></i>
+  <strong>Warning: Spring 2020 website is under construction.</strong> There may be misleading information from past semesters on this website, which may be different from the Spring 2020 offering of the course. We will remove this warning when the information on this website is accurate.
+</div> -->
+
+<!-- <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="3800" style="float: left; top: 5em; position: absolute; z-index: 1000">
+  <div class="toast-header">
+    <i class="fal fa-bell"></i>
+    <strong class="mr-auto pl-1">Announcement</strong>
+    <small class="text-white" id="announcementTime"></small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    <b>Lecture venue for changed AGAIN! Wednesday's (6/26) and future lectures will be held at DWINELLE 155.</b>
+  </div>
+</div> -->
+
+<script>
+  // $('.toast').toast('show')
+  document.getElementById('announcementTime').innerHTML = moment([2020, 5, 25, 21, 35]).fromNow()
+</script>
+
+
+    <script src="../js/calendar.js"></script>
+<script src="../js/gcal.js"></script>
+
+<!-- Start of the schedule table-->
+<h1 align="center">Course Schedule</h1>
+<div class="body" align="center">
+  <div class="blacktext">
+    The schedule will be updated throughout the semester as needed.
+    </div>
+    <span style="font-weight: bold;"><br>
+  <br>
+  <br>
+  </span>
+  <table style="text-align: left; width: 901px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+  <tr>
+  <td style="width: 84px;">Date
+  </td>
+  <td style="width: 308px;">Lecture Topic and Slides</td>
+  </td>
+  <td style="width: 98px;">Readings</td>
+  <td style="width: 319px;">Practice problems, former exams, etc.</td>
+  <td style="width: 200px;">Homework/Projects</td>
+  </tr>
+  <tr>
+  <td style="width: 84px;">8/23,8/25</td>
+  <td style="width: 308px;">Intro to AI
+    <br> Uninformed Search</br>
+  </td>
+  <td style="width: 350px;"><span style="font-weight: bold; color:
+    red;"></span>
+    Ch. 1&2
+    <br>Ch. 3.1-3.4</br>
+  </td>
+    
+  <td style="width: 98px;"> 
+  </td>
+  <td style="width: 189px;">
+    Project #0: 
+  </td>
+  </tr>
+  <tr>
+  <td style="width: 84px;">8/30, 9/1</td>
+  <td style="width: 308px;">Uninformed Search (cont.) <br>A* and Heuristics
+    </br>
+  </td>
+  <td style="width: 350px;">Ch. 3.5-3.6
+  </td>
+  <td style="width: 98px;"> <br>
+  </td>
+  <td style="width: 189px;"> Project #1: 
+  </td>
+  </tr>
+  <tr>
+  <td style="width: 84px;">9/6, 9/8</td>
+  <td style="width: 308px;">Finish Graph Search <br>
+  </td>
+  <td>
+  </td>
+  <td></td>
+  <td></td>
+  </tr>
+  
+  <td style="width: 84px;">9/13, 9/15</td>
+  <td>
+    CSP I <br>CSP II</br>
+  </td>
+  <td style="width: 350px;"> 
+  Ch. 6.1 <br>Ch. 6.2-6.5</br>
+  </td>
+  <td style="width: 98px;"> <br>
+  </td>
+  <td style="width: 189px;"><br>
+    
+  </td>
+  </tr>
+  <tr>
+  <td style="width: 84px;">9/20, 9/22</td>
+  <td style="width: 308px;">Game trees: Minimax <br>Game trees: Expectimax, Utilities </br>
+  </td>
+  <td style="width: 350px;">Ch. 5.2-5.5 <br>Ch. 5.2-5.5<br>
+  Ch. 16.1-16.3
+  </td>
+  <td style="width: 98px;"> <br>
+  </td>
+  <td style="width: 189px;">
+  </td>
+  </tr>
+  <tr>
+  <td style="width: 84px;">9/27, 9/29</td>
+  <td style="width: 308px;">Markov Decision Processes I <br>MDPs II
+  <span style="font-weight: bold; color: rgb(255, 0, 0);"><br>
+  </span></td>
+  <td style="width: 260px;">Ch 17.1-3 <br>Ch 17.1-3
+  </span></td>
+  </td>
+  <td style="width: 98px;"> <br>
+  </td>
+  <td style="width: 189px;">
+  </td>
+  </tr>
+  
+  <tr>
+  <td style="background-color: rgb(255, 255, 255); width: 84px;">10/6, 10/8</td>
+  <td style="width:
+    308px;">Reinforcement Learning I<br>RL II, RL III
+  <td style="width: 350px;">Ch. 21
+  </td>
+  <td style="width: 98px;"> <br></td>
+  <td style="background-color: rgb(255, 255, 255); width: 189px;"> </a>
+  </td>
+  </tr>
+  
+  <tr>
+  <td style="background-color: rgb(255, 255, 255); width: 84px;">10/12/2021</td>
+  </td>
+  <td style="width: 350px;">Midterm preview
+     <br>
+  <td style="width: 98px;">Ch. 21</td>
+  <td style="background-color: rgb(255, 255, 255); width: 189px;">
+  </td>
+  <td style="width: 98px;"></td>
+  </tr>
+  <tr>
+  <td style="background-color: rgb(255, 255, 255); width: 84px;">10/13/2021</td>
+  <td style="background-color: rgb(255, 255, 255); width:
+    308px;">
+  <span style="font-weight: bold; color: green;">Midterm exam;
+    2 pages of handwritten notes, double-sided OR 4 pages of handwritten
+    notes single-sided [standard size!]
+  </span></td>
+  <td style="width: 350px;">
+     <br>
+  <td style="width: 98px;"></td>
+  <td style="background-color: rgb(255, 255, 255); width: 189px;">
+  </td>
+  </tr>
+  <tr>
+  <td style="background-color: rgb(255, 255, 255); width: 84px;">10/18, 10/20</td>
+  <td style="background-color: rgb(255, 255, 255); width:
+    308px;">Probability + BNs: Intro<br>
+    BNs: Representation
+  <span style="font-weight: bold; color: red;">
+  </span></td>
+  <td style="width: 350px;">Ch 13.1-13.5 <br>Ch. 14.1, 14.2, 14.4
+     <br>
+  <td style="width: 98px;"></td>
+  <td style="background-color: rgb(255, 255, 255); width: 189px;">
+  </td>
+  </tr>
+  <tr>
+  <td style="background-color: rgb(255, 255, 255); width: 84px;">10/25, 10/27</td>
+  <td style="background-color: rgb(255, 255, 255); width:
+    308px;">BNs: Inference
+  </td>
+  <td style="width: 350px;">Ch. 14.4
+     <br>
+  <td style="width: 98px;"></td>
+  <td style="background-color: rgb(255, 255, 255); width: 189px;">
+  </td>
+  </tr>
+  <tr>
+  <td style="background-color: rgb(255, 255, 255); width: 84px;">11/1, 11/3</td>
+  <td style="background-color: rgb(255, 255, 255); width:
+    308px;">Decision Networks / VPI
+  </td>
+  <td style="width: 350px;">Ch. 16.5-16.6
+     <br>
+  <td style="width: 98px;"></td>
+  <td style="background-color: rgb(255, 255, 255); width: 189px;">
+  </td>
+  </tr>
+  <tr>
+  <td style="background-color: rgb(255, 255, 255); width: 84px;">11/8, 11/10</td>
+  <td style="background-color: rgb(255, 255, 255); width:
+    308px;">ML: Decision Trees<br>
+    ML: Naive Bayes
+  
+  </td>
+  <td style="width: 350px;">Ch. 19.2-19.3<br>Ch. 20.1-20.2.2
+     <br>
+  <td style="width: 98px;"></td>
+  <td style="background-color: rgb(255, 255, 255); width: 189px;">
+  </td>
+  </tr>
+  <tr>
+  <td style="background-color: rgb(255, 255, 255); width: 84px;">11/15,
+    11/17, 11/22</td>
+  <td style="background-color: rgb(255, 255, 255); width:
+    308px;">Perceptrons and Logistic Regression<br>
+    Optimization and Neural Networks<br>
+  </td>
+  <td style="width: 350px;">Ch. 18.6.3 & 18.8<br>
+     <br>
+  <td style="width: 98px;"></td>
+  <td style="background-color: rgb(255, 255, 255); width: 189px;">
+  </td>
+  </tr>
+  <tr>
+  <td style="background-color: rgb(255, 255, 255); width: 84px;">11/29, 12/1</td>
+  <td style="background-color: rgb(255, 255, 255); width:
+    308px;">Final preview
+  </td>
+  <td style="width: 350px;"><br>
+     <br>
+  <td style="width: 98px;"></td>
+  <td style="background-color: rgb(255, 255, 255); width: 189px;">
+  </td>
+  </tr>
+  
+  <tr>
+  <td style="background-color: rgb(255, 255, 255); width:
+    84px;">12/13/2021 1:30pm-4:15pm</td>
+  <td style="background-color: rgb(255, 255, 255); width:
+    308px;"><span style="font-weight: bold; color: green;">Final exam; 4 pages of hand-written notes double sided OR 8
+    pages of hand-written notes single-sided [standard size!]
+  </span></td>
+  <td style="width: 350px;"><br>
+     <br>
+  <td style="width: 98px;"></td>
+  <td style="background-color: rgb(255, 255, 255); width: 189px;">
+  </td>
+  </tr>
+
+</tbody>
+</table>
+
+
+
+<footer class="py-4 container">
+  <div class="row text-center">
+    <div class="col-md-6 col-sm-12">
+      <h3 data-toc-skip>CS 480</h3>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item"><a href="schedule.html" class="nav-link">Weekly Schedule</a>
+        </li>
+        <li class="nav-item"><a href="office.html" class="nav-link">Office Hours</a>
+        </li>
+        <li class="nav-item"><a href="staff.html" class="nav-link">Staff</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+      <h3 data-toc-skip>Useful Links</h3>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item"><a href="https://piazza.com/class/l6xy6jx3bi0jf" class="nav-link">Piazza</a>
+        </li>
+        <li class="nav-item"><a href="https://www.gradescope.com/courses/425872" class="nav-link">Gradescope</a>
+        </li>
+        <li class="nav-item"><a href="exams.html" class="nav-link">Exams</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="../js/clipboard.min.js"></script>
+  <script src="../js/codeselect.js"></script>
+</footer>
+  </div>
+
+</body>
+
+<!-- <script>w3.includeHTML();</script> -->
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+
+</html>
