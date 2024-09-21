@@ -87,19 +87,83 @@ def depthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    print("Start:", problem.getStartState())
-    print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
-    print("Start's successors:", problem.getSuccessors(problem.getStartState()))
+    stack=util.Stack()
+    visited=[]
+    startNode=(problem.getStartState(),[])        
+    stack.push(startNode)
+    while not stack.isEmpty():
+        popped=stack.pop()
+        location=popped[0]
+        path=popped[1]
+        if location not in visited:               
+            visited.append(location)              
+            if problem.isGoalState(location):
+                return path
+            successors=problem.getSuccessors(location)
+            for suc in list(successors):
+                if suc[0] not in visited:
+                    stack.push((suc[0],path+[suc[1]]))
+    return []    
     util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
+    queue=util.Queue()
+    visited=[]                                                       #We are doing the same thing like DFS with the difference that here we are using
+    startNode=(problem.getStartState(),[])                           #queue instead of stack to build the path according to breadth-first logic
+    queue.push(startNode)
+    while not queue.isEmpty():
+        popped=queue.pop()
+        location=popped[0]
+        path=popped[1]
+        if location not in visited:
+            visited.append(location)
+            if problem.isGoalState(location):
+                return path
+            successors=problem.getSuccessors(location)
+            for suc in list(successors):
+                if suc[0] not in visited:
+                    queue.push((suc[0],path + [suc[1]]))
+    return []
     util.raiseNotDefined()
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
+    Pr_q=util.PriorityQueue()
+    visited=dict()
+    state=problem.getStartState()
+    nd = {}
+    nd["pred"]=None                                                             #We are getting the parent of a node,the state the action and
+    nd["act"]=None                                                              #compute the cost and building the path(aka actions)
+    nd["state"]=state
+    nd["cost"]=0
+    Pr_q.push(nd,nd["cost"])
+
+    while not Pr_q.isEmpty():
+        nd=Pr_q.pop()
+        state=nd["state"]
+        cost=nd["cost"]
+
+        if state in visited:
+            continue
+        visited[state]=True
+        if problem.isGoalState(state)==True:
+            break
+        for suc in problem.getSuccessors(state):
+            if not suc[0] in visited:
+                new_nd={}
+                new_nd["pred"]=nd
+                new_nd["state"]=suc[0]
+                new_nd["act"]=suc[1]
+                new_nd["cost"]=suc[2]+cost
+                Pr_q.push(new_nd,new_nd["cost"])
+    actions=[]
+    while nd["act"] !=None:
+        actions.insert(0,nd["act"])
+        nd=nd["pred"]
+    return actions
     util.raiseNotDefined()
 
 def nullHeuristic(state, problem=None):
@@ -112,6 +176,43 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
+    Pr_q=util.PriorityQueue()
+    visited=dict()
+
+    state=problem.getStartState()
+    nd={}
+    nd["pred"]=None
+    nd["act"]=None
+    nd["state"]=state
+    nd["cost"]=0
+    nd["eq"]=heuristic(state,problem)
+    Pr_q.push(nd,nd["cost"]+nd["eq"])
+
+    while not Pr_q.isEmpty():
+        nd=Pr_q.pop()
+        state=nd["state"]
+        cost=nd["cost"]
+        v=nd["eq"]
+                                                                        
+        if state in visited:                                              
+            continue
+        visited[state]=True
+        if problem.isGoalState(state)==True:
+            break
+        for suc in problem.getSuccessors(state):
+            if not suc[0] in visited:
+                new_nd={}
+                new_nd["pred"]=nd
+                new_nd["state"]=suc[0]
+                new_nd["act"]=suc[1]
+                new_nd["cost"]=suc[2] + cost
+                new_nd["eq"]=heuristic(new_nd["state"],problem)
+                Pr_q.push(new_nd,new_nd["cost"]+new_nd["eq"])
+    actions= []
+    while nd["act"]!=None:
+        actions.insert(0,nd["act"])
+        nd=nd["pred"]
+    return actions
     util.raiseNotDefined()
 
 
