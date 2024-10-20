@@ -100,9 +100,9 @@ def depthFirstSearch(problem):
             if problem.isGoalState(location):
                 return path
             successors=problem.getSuccessors(location)
-            for suc in list(successors):
-                if suc[0] not in visited:
-                    stack.push((suc[0],path+[suc[1]]))
+            for successor in list(successors):
+                if successor[0] not in visited:
+                    stack.push((successor[0],path+[successor[1]]))
     return []    
     util.raiseNotDefined()
 
@@ -110,8 +110,8 @@ def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
     queue=util.Queue()
-    visited=[]                                                       #We are doing the same thing like DFS with the difference that here we are using
-    startNode=(problem.getStartState(),[])                           #queue instead of stack to build the path according to breadth-first logic
+    visited=[]                                                       
+    startNode=(problem.getStartState(),[])                           
     queue.push(startNode)
     while not queue.isEmpty():
         popped=queue.pop()
@@ -122,47 +122,47 @@ def breadthFirstSearch(problem):
             if problem.isGoalState(location):
                 return path
             successors=problem.getSuccessors(location)
-            for suc in list(successors):
-                if suc[0] not in visited:
-                    queue.push((suc[0],path + [suc[1]]))
+            for successor in list(successors):
+                if successor[0] not in visited:
+                    queue.push((successor[0],path + [successor[1]]))
     return []
     util.raiseNotDefined()
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
-    Pr_q=util.PriorityQueue()
+    priority_queue=util.PriorityQueue()
     visited=dict()
     state=problem.getStartState()
-    nd = {}
-    nd["pred"]=None                                                             #We are getting the parent of a node,the state the action and
-    nd["act"]=None                                                              #compute the cost and building the path(aka actions)
-    nd["state"]=state
-    nd["cost"]=0
-    Pr_q.push(nd,nd["cost"])
+    node = {}
+    node["predecessor"]=None                                                             
+    node["action"]=None                                                              
+    node["state"]=state
+    node["cost"]=0
+    priority_queue.push(node,node["cost"])
 
-    while not Pr_q.isEmpty():
-        nd=Pr_q.pop()
-        state=nd["state"]
-        cost=nd["cost"]
+    while not priority_queue.isEmpty():
+        node=priority_queue.pop()
+        state=node["state"]
+        cost=node["cost"]
 
         if state in visited:
             continue
         visited[state]=True
         if problem.isGoalState(state)==True:
             break
-        for suc in problem.getSuccessors(state):
-            if not suc[0] in visited:
-                new_nd={}
-                new_nd["pred"]=nd
-                new_nd["state"]=suc[0]
-                new_nd["act"]=suc[1]
-                new_nd["cost"]=suc[2]+cost
-                Pr_q.push(new_nd,new_nd["cost"])
+        for successor in problem.getSuccessors(state):
+            if not successor[0] in visited:
+                new_node={}
+                new_node["predecessor"]=node
+                new_node["state"]=successor[0]
+                new_node["action"]=successor[1]
+                new_node["cost"]=successor[2]+cost
+                priority_queue.push(new_node,new_node["cost"])
     actions=[]
-    while nd["act"] !=None:
-        actions.insert(0,nd["act"])
-        nd=nd["pred"]
+    while node["action"] !=None:
+        actions.insert(0,node["action"])
+        node=node["predecessor"]
     return actions
     util.raiseNotDefined()
 
@@ -176,42 +176,41 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
-    Pr_q=util.PriorityQueue()
+    priority_queue=util.PriorityQueue()
     visited=dict()
 
     state=problem.getStartState()
-    nd={}
-    nd["pred"]=None
-    nd["act"]=None
-    nd["state"]=state
-    nd["cost"]=0
-    nd["eq"]=heuristic(state,problem)
-    Pr_q.push(nd,nd["cost"]+nd["eq"])
+    node={}
+    node["predecessor"]=None
+    node["action"]=None
+    node["state"]=state
+    node["cost"]=0
+    node["total_cost_estimate"]=heuristic(state,problem)
+    priority_queue.push(node,node["cost"]+node["total_cost_estimate"])
 
-    while not Pr_q.isEmpty():
-        nd=Pr_q.pop()
-        state=nd["state"]
-        cost=nd["cost"]
-        v=nd["eq"]
+    while not priority_queue.isEmpty():
+        node=priority_queue.pop()
+        state=node["state"]
+        cost=node["cost"]
                                                                         
         if state in visited:                                              
             continue
         visited[state]=True
         if problem.isGoalState(state)==True:
             break
-        for suc in problem.getSuccessors(state):
-            if not suc[0] in visited:
-                new_nd={}
-                new_nd["pred"]=nd
-                new_nd["state"]=suc[0]
-                new_nd["act"]=suc[1]
-                new_nd["cost"]=suc[2] + cost
-                new_nd["eq"]=heuristic(new_nd["state"],problem)
-                Pr_q.push(new_nd,new_nd["cost"]+new_nd["eq"])
+        for successor in problem.getSuccessors(state):
+            if not successor[0] in visited:
+                new_node={}
+                new_node["predecessor"]=node
+                new_node["state"]=successor[0]
+                new_node["action"]=successor[1]
+                new_node["cost"]=successor[2] + cost
+                new_node["total_cost_estimate"]=heuristic(new_node["state"],problem)
+                priority_queue.push(new_node,new_node["cost"]+new_node["total_cost_estimate"])
     actions= []
-    while nd["act"]!=None:
-        actions.insert(0,nd["act"])
-        nd=nd["pred"]
+    while node["action"]!=None:
+        actions.insert(0,node["action"])
+        node=node["predecessor"]
     return actions
     util.raiseNotDefined()
 
